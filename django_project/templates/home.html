@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<ul class="list-group">
+        {% for image in images %}
+
+        <li class="list-group-item">
+        	<img src='{{ image.image.url }}' width="500" height="500">
+        	<p>Description: {{ image.description }}</p>
+        </li>
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}
