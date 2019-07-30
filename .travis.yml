@@ -10,6 +10,6 @@ script: pytest -v --cov . --cov-report term-missing --flake8
 deploy:
   skip_cleanup: true
   provider: script
-  script: fab -H root@165.22.77.77 deploy
+  script: fab -i id_rsa -H root@165.22.77.77 deploy
   on:
     branch: master
