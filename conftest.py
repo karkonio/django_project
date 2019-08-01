@@ -1,6 +1,7 @@
 import pytest
+from django.contrib.auth.models import User
 
-from django_project.models import Image, User
+from django_project.models import Image
 
 
 @pytest.fixture
