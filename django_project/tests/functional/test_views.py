@@ -6,13 +6,19 @@ def test_home(db, client, data):
     assert response.status_code == 200
     response = response.content.decode('utf-8')
     response = html.fromstring(response)
-    a = response.cssselect('body > div > ul > div')
+
+    # assert number of posts
+    a = response.cssselect('img.media-object')
     assert len(a) == 2
-    b = response.cssselect(
-        'body > div > ul > div:nth-child(1) > div > div > div > div > p'
-    )
-    assert b[0].text == 'ASD'
-    b = response.cssselect(
-        'body > div > ul > div:nth-child(2) > div > div > div > div > p'
-    )
-    assert b[0].text == 'ASD2'
+
+    # assert rendering the username of image owner
+    a = response.cssselect('h3.media-heading')
+    assert a[0].text == 'User: user'
+
+    # assert description of 1st image
+    a = response.cssselect('div.media-body > p')
+    assert a[0].text == 'Description: ASD'
+
+    # assert description of 2nd image
+    a = response.cssselect('div.media-body > p')
+    assert a[1].text == 'Description: ASD2'
