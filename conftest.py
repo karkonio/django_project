@@ -13,4 +13,4 @@ def data():
     photo_2 = Image.objects.create(
         user=user, image='asd2.jpg', description='ASD2'
     )
-    return photo_1, photo_2
+    return photo_1, photo_2, user
