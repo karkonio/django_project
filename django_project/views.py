@@ -9,3 +9,7 @@ def home(request):
     return render(request, 'home.html', context={
         'images': images
     })
+
+
+def profile(request):
+    return render(request, 'profile.html')
