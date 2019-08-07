@@ -8,7 +8,7 @@ class Image(models.Model):
         on_delete=models.CASCADE
     )
     image = models.ImageField()
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True)
 
 
 class Profile(models.Model):
@@ -40,6 +40,7 @@ class Profile(models.Model):
         (CAPRICORN, CAPRICORN)
     )
 
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     age = models.IntegerField()
     zodiak = models.CharField(
@@ -48,3 +49,4 @@ class Profile(models.Model):
     city = models.CharField(max_length=85)
     number = models.CharField(unique=True, max_length=30)
     website = models.URLField(max_length=250)
+    bio = models.TextField(blank=True)

@@ -58,8 +58,9 @@
 
       <div class="panel-body">
         <div class="text-center" id="author">
-          <img src="http://bootstraptema.ru/snippets/element/2016/profilesection/myprofile.jpg">
-          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+          <img src="{{ user.avatar.url }}" width="300" height="300">
+          <small class="label label-warning">{{ user.bio }}</small>
+          <h3>{{ user.user.first_name }} {{ user.user.last_name }}</h3>
         </div>
       </div>
 
@@ -80,7 +81,7 @@
       <table class="table table-th-block">
        <tbody>
          <tr><td class="active">Возраст:</td><td>{{ user.age }}</td></tr>
-         <tr><td class="active">Знак зодиака:</td><td>{{ user.zodiac }}</td></tr>
+         <tr><td class="active">Знак зодиака:</td><td>{{ user.zodiak }}</td></tr>
          <tr><td class="active">Город:</td><td>{{ user.city }}</td></tr>
          <tr><td class="active">Контакты:</td><td>{{ user.number }}</td><br></tr>
          <tr><td class="active">Соцсети:</td><td><a href="сслыка на соцсети" target="_blank">{{ user.website }}</a></td></tr>
