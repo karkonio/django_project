@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Image
+from .models import Image, Profile
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -14,4 +14,9 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ['user', 'image_tag', 'description']
 
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'age', 'city', 'number', 'website']
+
+
 admin.site.register(Image, ImageAdmin)
+admin.site.register(Profile, ProfileAdmin)

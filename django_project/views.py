@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 
-from .models import Image
+from .models import Image, Profile
 
 
 def home(request):
@@ -12,4 +12,7 @@ def home(request):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    profiles = Profile.objects.all()
+    return render(request, 'profile.html', context={
+        'users': profiles
+    })

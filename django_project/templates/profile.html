@@ -42,8 +42,8 @@
 
 <div class="container">
   <div id="main">
-
-
+    {% csrf_token %}
+    {% for user in users %}
     <div class="row" id="real-estates-detail">
     <div class="col-lg-4 col-md-4 col-xs-12">
     <div class="panel panel-default">
@@ -59,7 +59,7 @@
       <div class="panel-body">
         <div class="text-center" id="author">
           <img src="http://bootstraptema.ru/snippets/element/2016/profilesection/myprofile.jpg">
-          <h3>Василий Понторезов</h3>
+          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
         </div>
       </div>
 
@@ -77,56 +77,22 @@
     <hr>
      <div class="tab-pane fade active in" id="detail">
      <h4>История профиля</h4>
-     <table class="table table-th-block">
-     <tbody>
-     <tr><td class="active">Возраст:</td><td>60</td></tr>
-     <tr><td class="active">Знак зодиака:</td><td>Чудо</td></tr>
-     <tr><td class="active">Город:</td><td>Чудинск</td></tr>
-     <tr><td class="active">Телефоны:</td><td>+ 43</td><br></tr>
-     <tr><td class="active"></td><td>+ 43</td><br></tr>
-
-     <tr><td class="active">Ссылка на соцсеть:</td><td><a href="сслыка на соцсети" target="_blank">инста</a></td></tr>
-    </tbody>
-     </table>
-     </div>
-     <div class="tab-pane fade" id="contact">
-     <p></p>
-     <form role="form">
-     <div class="form-group">
-     <label>Ваше имя</label>
-     <input type="text" class="form-control rounded" placeholder="Укажите Ваше Имя">
-     </div>
-     <div class="form-group">
-     <label>Ваш телефон</label>
-     <input type="text" class="form-control rounded" placeholder="(+7)(095)123456">
-     </div>
-     <div class="form-group">
-     <label>E-mail адрес</label>
-     <input type="email" class="form-control rounded" placeholder="Ваш Е-майл">
-     </div>
-     <div class="form-group">
-     <div class="checkbox">
-     <label>
-     <input type="checkbox"> Согласен с условиями
-     </label>
-     </div>
-     </div>
-     <div class="form-group">
-     <label>Текст Вашего сообщения</label>
-     <textarea class="form-control rounded" style="height: 100px;"></textarea>
-     <p class="help-block">Текст сообщения будет отправлен пользователю</p>
-     </div>
-     <div class="form-group">
-     <button type="submit" class="btn btn-success" data-original-title="" title="">Отправить</button>
-     </div>
-     </form>
+      <table class="table table-th-block">
+       <tbody>
+         <tr><td class="active">Возраст:</td><td>{{ user.age }}</td></tr>
+         <tr><td class="active">Знак зодиака:</td><td>{{ user.zodiac }}</td></tr>
+         <tr><td class="active">Город:</td><td>{{ user.city }}</td></tr>
+         <tr><td class="active">Контакты:</td><td>{{ user.number }}</td><br></tr>
+         <tr><td class="active">Соцсети:</td><td><a href="сслыка на соцсети" target="_blank">{{ user.website }}</a></td></tr>
+      </tbody>
+      </table>
      </div>
      </div>
      </div>
      </div>
      </div>
-     </div>
-  </div>
+    </div>
+    {% endfor %}
 
 </div><!-- /.main -->
 </div><!-- /.container -->
