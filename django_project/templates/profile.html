@@ -43,7 +43,6 @@
 <div class="container">
   <div id="main">
     {% csrf_token %}
-    {% for user in users %}
     <div class="row" id="real-estates-detail">
     <div class="col-lg-4 col-md-4 col-xs-12">
     <div class="panel panel-default">
@@ -59,9 +58,11 @@
       <div class="panel-body">
         <div class="text-center" id="author">
           <img src="{{ user.avatar.url }}" width="300" height="300">
+
             {% for tag in tags %}
               <small class="label label-warning">{{ tag }}</small>
             {% endfor %}
+
           <h3>{{ user.user.first_name }} {{ user.user.last_name }}</h3>
         </div>
       </div>
@@ -95,7 +96,7 @@
      </div>
      </div>
     </div>
-    {% endfor %}
+
 
 </div><!-- /.main -->
 </div><!-- /.container -->

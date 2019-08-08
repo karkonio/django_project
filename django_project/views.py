@@ -15,6 +15,6 @@ def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
     tags = profile.tags.split(',')
     return render(request, 'profile.html', context={
-        'users': profile,
+        'user': profile,
         'tags': tags
     })

@@ -20,7 +20,7 @@
         <a class="pull-left" href="#">
         <img class="media-object" src='{{ image.image.url }}' width="350" height="350"></a>
       <div class="media-body">
-        <h3 class="media-heading">User: {{ image.user.username }}</h3>
+        <h3 class="media-heading">User: <a href="/profile/{{ image.user_id }}">{{ image.user.username }}</a></h3>
           <p>Description: {{ image.description }}</p>
       </div>
       </div>
