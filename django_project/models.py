@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+import json
+
 
 class Image(models.Model):
     user = models.ForeignKey(
@@ -49,4 +51,10 @@ class Profile(models.Model):
     city = models.CharField(max_length=85)
     number = models.CharField(unique=True, max_length=30)
     website = models.URLField(max_length=250)
-    bio = models.TextField(blank=True)
+    tags = models.CharField(max_length=150, blank=True)
+
+    def set_tags(self, x):
+        self.tags = json.dumps(x)
+
+    def get_tags(self):
+        return self.tags.split(',')

@@ -15,7 +15,7 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'age', 'city', 'number', 'website']
+    list_display = ['user', 'age', 'city', 'number', 'website', 'tags']
 
 
 admin.site.register(Image, ImageAdmin)
