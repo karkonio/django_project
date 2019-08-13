@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth.models import User
 
-from django_project.models import Image
+from django_project.models import Image, Profile
 
 
 @pytest.fixture
@@ -13,4 +13,10 @@ def data():
     photo_2 = Image.objects.create(
         user=user, image='asd2.jpg', description='ASD2'
     )
-    return photo_1, photo_2, user
+    profile = Profile.objects.create(
+        user=user, age=21, city='Bangkok',
+        number='+7 787 654 32 10',
+        website='https://www.google.com',
+        tags='#love, #peace'
+    )
+    return photo_1, photo_2, user, profile

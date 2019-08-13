@@ -57,11 +57,16 @@
 
       <div class="panel-body">
         <div class="text-center" id="author">
-          <img src="{{ user.avatar.url }}" width="300" height="300">
 
-            {% for tag in tags %}
-              <small class="label label-warning">{{ tag }}</small>
-            {% endfor %}
+          {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" width="300" height="300">
+          {% else %}
+            <img src="https://cdn0.iconfinder.com/data/icons/human-diversity-avatars-flat/64/human-avatar-user-ui-account-round-512.png" width="300" height="300">
+          {% endif %}
+          
+          {% for tag in tags %}
+            <small class="label label-warning">{{ tag }}</small>
+          {% endfor %}
 
           <h3>{{ user.user.first_name }} {{ user.user.last_name }}</h3>
         </div>
