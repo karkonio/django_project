@@ -1,10 +1,15 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.contrib.auth.admin import UserAdmin
 
-from .models import Image, Profile
+from .models import User, Post, Profile
 
 
-class ImageAdmin(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'is_active']
+
+
+class PostAdmin(admin.ModelAdmin):
     def image_tag(self, obj):
         return format_html(
             '<img src="{}" width="300" height="300" />'.format(obj.image.url)
@@ -15,8 +20,9 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'age', 'city', 'number', 'website', 'tags']
+    list_display = ['user', 'birthday', 'city', 'phone', 'website']
 
 
-admin.site.register(Image, ImageAdmin)
+admin.site.register(User, UserAdmin)
+admin.site.register(Post, PostAdmin)
 admin.site.register(Profile, ProfileAdmin)

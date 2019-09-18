@@ -2,15 +2,15 @@
 
 {% block content %}
 
-  {% for image in images %}
+  {% for post in posts %}
 
   <div class="well">
       <div class="media">
         <a class="pull-left" href="#">
-        <img class="media-object" src='{{ image.image.url }}' width="350" height="350"></a>
+        <img class="media-object" src='{{ post.image.url }}' width="350" height="350"></a>
       <div class="media-body">
-        <h3 class="media-heading">User: <a href="/profile/{{ image.user_id }}">{{ image.user.username }}</a></h3>
-          <p>Description: {{ image.description }}</p>
+        <h3 class="media-heading">User: <a href="/profile/{{ post.user_id }}">{{ post.user.username }}</a></h3>
+          <p>Description: {{ post.description }}</p>
       </div>
       </div>
   </div>
