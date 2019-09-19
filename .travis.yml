@@ -3,7 +3,7 @@ language: python
 python:
 - '3.6'
 before_install:
-- openssl aes-256-cbc -K $encrypted_ce8296e67f8a_key -iv $encrypted_ce8296e67f8a_iv
+- openssl aes-256-cbc -K $encrypted_d384cc2dd081_key -iv $encrypted_d384cc2dd081_iv
   -in id_rsa.enc -out id_rsa -d
 install: pip install -r requirements.txt
 script: pytest -v --cov . --cov-report term-missing --cov-fail-under=100 --flake8
