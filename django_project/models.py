@@ -25,7 +25,7 @@ class Profile(models.Model):
         on_delete=models.CASCADE
     )
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    birthday=models.DateField(auto_now=False, null=True, blank=True)
+    birthday = models.DateField(auto_now=False, null=True, blank=True)
     city = models.CharField(max_length=85)
     phone = models.CharField(unique=True, max_length=30)
     website = models.URLField(max_length=250)

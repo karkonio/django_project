@@ -32,21 +32,7 @@ def test_profile(db, client, data):
     response = response.content.decode('utf-8')
     response = html.fromstring(response)
 
-    # assert tags of user
-    a = response.cssselect('small.label.label-warning')
-    assert len(a) == 2
-    assert a[0].text == '#love'
-    assert a[1].text == ' #peace'
-
-    # assert profile users age, zodiac, city, phone, website
-    a = response.cssselect(
-        '#detail > table > tbody > tr:nth-child(1) > td:nth-child(2)'
-    )[0]
-    assert a.text == '21'
-    a = response.cssselect(
-        '#detail > table > tbody > tr:nth-child(2) > td:nth-child(2)'
-    )[0]
-    assert a.text == 'Водолей'
+    # assert profile users city, phone, website
     a = response.cssselect(
         '#detail > table > tbody > tr:nth-child(3) > td:nth-child(2)'
     )[0]
