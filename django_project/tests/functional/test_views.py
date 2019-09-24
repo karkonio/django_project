@@ -32,7 +32,15 @@ def test_profile(db, client, data):
     response = response.content.decode('utf-8')
     response = html.fromstring(response)
 
-    # assert profile users city, phone, website
+    # assert profile users age, zodiac, city, phone, website
+    a = response.cssselect(
+        '#detail > table > tbody > tr:nth-child(1) > td:nth-child(2)'
+    )[0]
+    assert a.text == '29'
+    a = response.cssselect(
+        '#detail > table > tbody > tr:nth-child(2) > td:nth-child(2)'
+    )[0]
+    assert a.text == 'Козерог'
     a = response.cssselect(
         '#detail > table > tbody > tr:nth-child(3) > td:nth-child(2)'
     )[0]

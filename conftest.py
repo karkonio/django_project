@@ -1,4 +1,5 @@
 import pytest
+import datetime
 
 from django_project.models import User, Post, Profile
 
@@ -7,7 +8,9 @@ from django_project.models import User, Post, Profile
 def data():
     user = User.objects.create_user(
         username='user', password='useruser',
-        first_name='User', last_name='Userovich')
+        first_name='User', last_name='Userovich',
+        birthday=datetime.datetime(1990, 1, 1)
+    )
     photo_1 = Post.objects.create(
         user=user, image='asd.jpg', description='ASD'
     )

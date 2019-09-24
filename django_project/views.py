@@ -13,6 +13,10 @@ def home(request):
 
 def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
+    age = profile.age()
+    zodiac = profile.zodiac()
     return render(request, 'profile.html', context={
-        'user': profile
+        'user': profile,
+        'age': age,
+        'zodiac': zodiac
     })

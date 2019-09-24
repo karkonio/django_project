@@ -5,7 +5,7 @@ from .models import User, Post, Profile
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'is_active']
+    list_display = ['first_name', 'last_name', 'birthday', 'is_active']
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -19,7 +19,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'birthday', 'city', 'phone', 'website']
+    list_display = ['user', 'city', 'phone', 'website']
 
 
 admin.site.register(User, UserAdmin)
