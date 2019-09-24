@@ -1,6 +1,6 @@
-__init__.py
 __pycache__
 .pytest_cache
 db.sqlite3
 .coverage
 /media/
+/*.pyc
