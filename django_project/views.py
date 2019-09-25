@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 
-from .models import Post, Profile
+from .models import Profile, Post
 
 
 def home(request):
@@ -11,12 +11,8 @@ def home(request):
     })
 
 
-def profile(request, user_id):
-    profile = Profile.objects.get(user_id=user_id)
-    age = profile.age()
-    zodiac = profile.zodiac()
+def profile(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
     return render(request, 'profile.html', context={
         'user': profile,
-        'age': age,
-        'zodiac': zodiac
     })

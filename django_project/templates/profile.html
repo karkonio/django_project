@@ -63,12 +63,8 @@
           {% else %}
             <img src="https://cdn0.iconfinder.com/data/icons/human-diversity-avatars-flat/64/human-avatar-user-ui-account-round-512.png" width="300" height="300">
           {% endif %}
-          
-          {% for tag in tags %}
-            <small class="label label-warning">{{ tag }}</small>
-          {% endfor %}
 
-          <h3>{{ user.user.first_name }} {{ user.user.last_name }}</h3>
+          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
         </div>
       </div>
 
@@ -80,7 +76,7 @@
      <div class="panel-body">
      <ul id="myTab" class="nav nav-pills">
      <li class="active"><a href="#detail" data-toggle="tab">О пользователе</a></li>
-     <li class=""><a href="#contact" data-toggle="tab">Отправить сообщение</a></li>
+<!--     <li class=""><a href="#contact" data-toggle="tab">Отправить сообщение</a></li>-->
      </ul>
      <div id="myTabContent" class="tab-content">
     <hr>
@@ -88,8 +84,9 @@
      <h4>Данные профиля</h4>
       <table class="table table-th-block">
        <tbody>
-         <tr><td class="active">Возраст:</td><td>{{ age }}</td></tr>
-         <tr><td class="active">Знак зодиака:</td><td>{{ zodiac }}</td></tr>
+         <tr><td class="active">День рождения:</td><td>{{ user.birthday }}</td></tr>
+         <tr><td class="active">Возраст:</td><td>{{ user.age }}</td></tr>
+         <tr><td class="active">Знак зодиака:</td><td>{{ user.zodiac }}</td></tr>
          <tr><td class="active">Город:</td><td>{{ user.city }}</td></tr>
          <tr><td class="active">Контакты:</td><td>{{ user.phone }}</td><br></tr>
          <tr><td class="active">Соцсети:</td><td><a href="{{ user.website }}" target="_blank">{{ user.website }}</a></td></tr>
@@ -103,8 +100,8 @@
     </div>
 
 
-</div><!-- /.main -->
-</div><!-- /.container -->
+</div>
+</div>
 
 
 {% endblock %}
