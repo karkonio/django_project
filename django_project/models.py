@@ -27,29 +27,29 @@ class Profile(AbstractUser):
         month = birthday.month
         day = birthday.day
         if (month == 12 and day >= 22) or (month == 1 and day <= 19):
-            zodiac = 'Козерог'  # pragma: no cover
+            zodiac = 'Козерог'
         elif (month == 1 and day >= 20) or (month == 2 and day <= 17):
-            zodiac = 'Водолей'  # pragma: no cover
+            zodiac = 'Водолей'
         elif (month == 2 and day >= 18) or (month == 3 and day <= 19):
-            zodiac = 'Рыбы'  # pragma: no cover
+            zodiac = 'Рыбы'
         elif (month == 3 and day >= 20) or (month == 4 and day <= 19):
-            zodiac = 'Овен'  # pragma: no cover
+            zodiac = 'Овен'
         elif (month == 4 and day >= 20) or (month == 5 and day <= 20):
-            zodiac = 'Телец'  # pragma: no cover
+            zodiac = 'Телец'
         elif (month == 5 and day >= 21) or (month == 6 and day <= 20):
-            zodiac = 'Близнецы'  # pragma: no cover
+            zodiac = 'Близнецы'
         elif (month == 6 and day >= 21) or (month == 7 and day <= 22):
-            zodiac = 'Рак'  # pragma: no cover
+            zodiac = 'Рак'
         elif (month == 7 and day >= 23) or (month == 8 and day <= 22):
-            zodiac = 'Лев'  # pragma: no cover
+            zodiac = 'Лев'
         elif (month == 8 and day >= 23) or (month == 9 and day <= 22):
-            zodiac = 'Дева'  # pragma: no cover
+            zodiac = 'Дева'
         elif (month == 9 and day >= 23) or (month == 10 and day <= 22):
-            zodiac = 'Весы'  # pragma: no cover
+            zodiac = 'Весы'
         elif (month == 10 and day >= 23) or (month == 11 and day <= 21):
-            zodiac = 'Скорпион'  # pragma: no cover
+            zodiac = 'Скорпион'
         elif (month == 11 and day >= 22) or (month == 12 and day <= 21):
-            zodiac = 'Стрелец'  # pragma: no cover
+            zodiac = 'Стрелец'
         return zodiac
 
     class Meta(AbstractUser.Meta):
