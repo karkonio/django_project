@@ -10,7 +10,7 @@ def test_post_str(db, data):
 
 
 def test_profile_str(db, data):
-    profile, photo_1, photo_2, follow1, follow2 = data
+    profile = data[0]
     assert str(profile) == 'user'
 
 
