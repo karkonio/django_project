@@ -6,7 +6,6 @@ python:
 - '3.6'
 
 before_install:
-  - pip install --user codecov
   - openssl aes-256-cbc -K $encrypted_d384cc2dd081_key -iv $encrypted_d384cc2dd081_iv
     -in id_rsa.enc -out id_rsa -d
 
@@ -15,7 +14,9 @@ install: pip install -r requirements.txt
 script: pytest -v --cov . --cov-report term-missing --cov-fail-under=100 --flake8
 
 after_success:
+  - pip install --user codecov
   - codecov --file coverage/lcov.info --disable search
+  - bash <(curl -s https://codecov.io/bash)
 
 deploy:
   skip_cleanup: true
