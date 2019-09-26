@@ -32,16 +32,38 @@ def test_profile(db, client, data):
     response = response.content.decode('utf-8')
     response = html.fromstring(response)
 
-    # assert profile users city, phone, website
+    # assert profile user birthday
+    a = response.cssselect(
+        '#detail > table > tbody > tr:nth-child(1) > td:nth-child(2)'
+    )[0]
+    assert a.text == 'Jan. 1, 1990'
+
+    # assert profile user age
+    a = response.cssselect(
+        '#detail > table > tbody > tr:nth-child(2) > td:nth-child(2)'
+    )[0]
+    assert a.text == '29'
+
+    # assert profile user zodiac
     a = response.cssselect(
         '#detail > table > tbody > tr:nth-child(3) > td:nth-child(2)'
     )[0]
-    assert a.text == 'Bangkok'
+    assert a.text == 'Козерог'
+
+    # assert profile user city
     a = response.cssselect(
         '#detail > table > tbody > tr:nth-child(4) > td:nth-child(2)'
     )[0]
-    assert a.text == '+7 787 654 32 10'
+    assert a.text == 'Bangkok'
+
+    # assert profile user phone
     a = response.cssselect(
-        '#detail > table > tbody > tr:nth-child(5) > td:nth-child(2) > a'
+        '#detail > table > tbody > tr:nth-child(5) > td:nth-child(2)'
     )[0]
-    assert a.text == 'https://www.google.com'
+    assert a.text == '+7 787 654 32 10'
+
+    # assert profile user website
+    a = response.cssselect(
+        '#detail > table > tbody > tr:nth-child(6) > td:nth-child(2) > a'
+    )[0]
+    assert a.text == 'https://www.test.com'
