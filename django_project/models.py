@@ -69,3 +69,20 @@ class Post(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Follower(models.Model):
+    follower = models.ForeignKey(
+        Profile, related_name='following',
+        on_delete=models.CASCADE
+    )
+    following = models.ForeignKey(
+        Profile, related_name='followers',
+        on_delete=models.CASCADE
+    )
+
+    class Meta:
+        unique_together = ('follower', 'following')
+
+    def __str__(self):
+        return u'%s follows %s' % (self.follower.username, self.following.username)  # noqa

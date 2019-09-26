@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Profile, Post
+from .models import Profile, Post, Follower
 
 
 @admin.register(Profile)
@@ -26,3 +26,8 @@ class PostAdmin(admin.ModelAdmin):
 
     image_tag.short_description = 'Image'
     list_display = ['profile', 'image_tag', 'description']
+
+
+@admin.register(Follower)
+class FollowerAdmin(admin.ModelAdmin):
+    list_display = ['follower', 'following']
