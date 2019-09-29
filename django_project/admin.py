@@ -11,6 +11,7 @@ class ProfileAdmin(admin.ModelAdmin):
             '<img src="{}" width="100" height="100" />'.format(obj.avatar.url)
         )
 
+    avatar_tag.short_description = 'Avatar'
     list_display = [
         'avatar_tag', 'first_name', 'last_name', 'birthday',
         'city', 'phone', 'website', 'age', 'zodiac'

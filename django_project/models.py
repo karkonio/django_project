@@ -85,4 +85,4 @@ class Follower(models.Model):
         unique_together = ('follower', 'following')
 
     def __str__(self):
-        return u'%s follows %s' % (self.follower.username, self.following.username)  # noqa
+        return '{} follows {}'.format(self.follower.username, self.following.username)  # noqa
