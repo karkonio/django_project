@@ -58,13 +58,13 @@
       <div class="panel-body">
         <div class="text-center" id="author">
 
-          {% if user.avatar %}
-            <img src="{{ user.avatar.url }}" width="300" height="300">
+          {% if profile.avatar.url != "" %}
+            <img src="{{ profile.avatar.url }}" width="300" height="300">
           {% else %}
             <img src="https://cdn0.iconfinder.com/data/icons/human-diversity-avatars-flat/64/human-avatar-user-ui-account-round-512.png" width="300" height="300">
           {% endif %}
 
-          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+          <h3>{{ profile.first_name }} {{ profile.last_name }}</h3>
         </div>
       </div>
 
@@ -75,6 +75,7 @@
      <div class="panel">
      <div class="panel-body">
      <ul id="myTab" class="nav nav-pills">
+
      <li class="active"><a href="#detail" data-toggle="tab">Подписаться</a></li>
      <li class=""><a href="#" data-toggle="tab">Подписки: {{ following }}</a></li>
      <li class=""><a href="#" data-toggle="tab">Подписчики: {{ followers }}</a></li>
@@ -85,12 +86,12 @@
      <h4>Данные профиля</h4>
       <table class="table table-th-block">
        <tbody>
-         <tr><td class="active">День рождения:</td><td>{{ user.birthday }}</td></tr>
-         <tr><td class="active">Возраст:</td><td>{{ user.age }}</td></tr>
-         <tr><td class="active">Знак зодиака:</td><td>{{ user.zodiac }}</td></tr>
-         <tr><td class="active">Город:</td><td>{{ user.city }}</td></tr>
-         <tr><td class="active">Контакты:</td><td>{{ user.phone }}</td><br></tr>
-         <tr><td class="active">Соцсети:</td><td><a href="{{ user.website }}" target="_blank">{{ user.website }}</a></td></tr>
+         <tr><td class="active">День рождения:</td><td>{{ profile.birthday }}</td></tr>
+         <tr><td class="active">Возраст:</td><td>{{ profile.age }}</td></tr>
+         <tr><td class="active">Знак зодиака:</td><td>{{ profile.zodiac }}</td></tr>
+         <tr><td class="active">Город:</td><td>{{ profile.city }}</td></tr>
+         <tr><td class="active">Контакты:</td><td>{{ profile.phone }}</td><br></tr>
+         <tr><td class="active">Соцсети:</td><td><a href="{{ profile.website }}" target="_blank">{{ user.website }}</a></td></tr>
       </tbody>
       </table>
      </div>

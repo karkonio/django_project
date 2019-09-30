@@ -13,23 +13,13 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <div class="container">
-    
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">Instach</a>
-      </div>
-    </div>
-  </nav>
+
+  {% include "navbar.html" %}
 
     {% block content %}
-      
-
 
     {% endblock %}
+
   </div>
 </body>
 </html>

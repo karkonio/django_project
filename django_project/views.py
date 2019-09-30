@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-
 from .models import Profile, Post
 
 
@@ -16,7 +15,7 @@ def profile(request, profile_id):
     following = profile.following.all().count()
     followers = profile.followers.all().count()
     return render(request, 'profile.html', context={
-        'user': profile,
+        'profile': profile,
         'following': following,
         'followers': followers
     })
