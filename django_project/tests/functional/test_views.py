@@ -67,3 +67,15 @@ def test_profile(db, client, data):
         '#detail > table > tbody > tr:nth-child(6) > td:nth-child(2) > a'
     )[0]
     assert a.text == 'https://www.test.com'
+
+    # assert profile followings number
+    a = response.cssselect(
+        '#myTab > li:nth-child(2) > a'
+    )[0]
+    assert a.text == 'Подписки: 1'
+
+    # assert profile followers number
+    a = response.cssselect(
+        '#myTab > li:nth-child(3) > a'
+    )[0]
+    assert a.text == 'Подписчики: 1'
