@@ -9,9 +9,9 @@ class ProfileAdmin(admin.ModelAdmin):
     def avatar_tag(self, obj):
         try:
             return format_html(
-                '<img src="{}" width="100" height="100" />'.format(obj.avatar.url)
+                '<img src="{}" width="100" height="100" />'.format(obj.avatar.url)  # noqa
             )
-        except:
+        except:  # noqa
             pass
 
     avatar_tag.short_description = 'Avatar'

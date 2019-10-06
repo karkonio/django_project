@@ -13,7 +13,7 @@ def test_home(db, client, data):
 
     # assert rendering the username of image owner
     a = response.cssselect(
-        'body > div > div:nth-child(2) > div > div > h3 > a'
+        'body > div > div:nth-child(12) > div > div > h3 > a'
     )
     assert a[0].text == 'user'
 
@@ -66,7 +66,7 @@ def test_profile(db, client, data):
     a = response.cssselect(
         '#detail > table > tbody > tr:nth-child(6) > td:nth-child(2) > a'
     )[0]
-    assert a.text == 'https://www.test.com'
+    assert a.get('href') == 'https://www.test.com'
 
     # assert profile followings number
     a = response.cssselect(
@@ -79,3 +79,42 @@ def test_profile(db, client, data):
         '#myTab > li:nth-child(3) > a'
     )[0]
     assert a.text == 'Подписчики: 1'
+
+
+def test_login_view(db, client, data):
+    profile = data[0]
+    print(profile)
+
+    # the state of navbar before login
+    response = client.get('/')
+    response = response.content.decode('utf-8')
+    response = html.fromstring(response)
+    a = response.cssselect(
+        '#navbarCollapse > ul > li > a'
+    )[0]
+    assert a.text == 'Log In'
+
+    # assert fail login process
+    response = client.post(
+        '/login/', {'username': 'fail', 'password': 'failfail'}
+    )
+    content = 'Please enter a correct username and password. Note that both fields may be case-sensitive.'  # noqa
+    assert content in response.content.decode()
+
+    # assert successful login process
+    response = client.post(
+        '/login/', {'username': 'user', 'password': 'useruser'}, follow=True
+    )
+    assert response.status_code == 200
+    last_url, status_code = response.redirect_chain[-1]
+    assert last_url == '/'
+
+    # the state of navbar after login
+    response = client.get('/')
+    response = response.content.decode('utf-8')
+    response = html.fromstring(response)
+    a = response.cssselect(
+        '#navbarCollapse > ul > li:nth-child(2) > form > \
+        input.btn.btn-primary.btn-block.get-started-btn.mt-1.mb-1'
+    )[0]
+    assert a.value == 'user, Log Out'
