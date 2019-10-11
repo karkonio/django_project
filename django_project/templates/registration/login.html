@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+Hi {{ user.username }}!
+<p>You are already authenticated</p>
+
+{% else %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+
+{% endif %}
+{% endblock %}

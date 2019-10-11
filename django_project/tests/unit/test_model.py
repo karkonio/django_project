@@ -4,10 +4,9 @@ from django_project.models import Profile
 
 
 def test_post_str(db, data):
-    post1 = data[1]
-    post2 = data[2]
-    assert str(post1) == '1'  # assert first post id
-    assert str(post2) == '2'  # assert second post id
+    profile, photo_1, photo_2, follow1, follow2 = data
+    assert str(photo_1) == '1'  # assert first post id
+    assert str(photo_2) == '2'  # assert second post id
 
 
 def test_profile_str(db, data):
@@ -109,3 +108,9 @@ def test_profile_zodiac(db):
         birthday=datetime.datetime(2019, 11, 22), phone='010 10 10'
     )
     assert sagittarius.zodiac == 'Стрелец'
+
+
+def test_follower_str(db, data):
+    profile, photo_1, photo_2, follow1, follow2 = data
+    assert str(follow1) == 'user follows test_user'
+    assert str(follow2) == 'test_user follows user'
