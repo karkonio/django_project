@@ -11,12 +11,16 @@ class ProfileSerializer(serializers.ModelSerializer):
             'zodiac', 'phone', 'website', 'city', 'posts'
         ]
 
+
 class PostSerializer(serializers.ModelSerializer):
-    profile = serializers.SlugRelatedField(read_only=True, slug_field='username')
+    profile = serializers.SlugRelatedField(
+        read_only=True, slug_field='username'
+    )
+    created = serializers.DateTimeField(format="%d %B, %Y  %H:%M")
 
     class Meta:
         model = Post
-        fields = ['id', 'image', 'description', 'profile']
+        fields = ['id', 'image', 'description', 'profile', 'created']
 
 
 class ProfileDetailSerializer(ProfileSerializer):

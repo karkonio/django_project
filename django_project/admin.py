@@ -29,7 +29,7 @@ class PostAdmin(admin.ModelAdmin):
         )
 
     image_tag.short_description = 'Image'
-    list_display = ['profile', 'image_tag', 'description']
+    list_display = ['profile', 'image_tag', 'description', 'created']
 
 
 @admin.register(Follower)
