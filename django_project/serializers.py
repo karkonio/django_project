@@ -4,12 +4,23 @@ from .models import Post, Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    following_count = serializers.SerializerMethodField()
+    followers_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Profile
         fields = [
             'id', 'username', 'birthday', 'first_name', 'last_name', 'age',
-            'zodiac', 'phone', 'website', 'city', 'posts'
+            'zodiac', 'phone', 'website', 'city', 'posts',
+            'following_count', 'followers_count'
         ]
+
+    def get_following_count(self, obj):
+        return obj.following.count()
+
+    def get_followers_count(self, obj):
+        return obj.followers.count()
+
 
 
 class PostSerializer(serializers.ModelSerializer):
