@@ -11,16 +11,15 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = [
             'id', 'username', 'birthday', 'first_name', 'last_name', 'age',
-            'zodiac', 'phone', 'website', 'city', 'posts',
-            'following_count', 'followers_count'
+            'zodiac', 'phone', 'website', 'city', 'posts', 'avatar',
+            'following_count', 'followers_count', 'direction'
         ]
 
     def get_following_count(self, obj):
-        return obj.following.count()
+        return obj.following.count()  # pragma: no cover
 
     def get_followers_count(self, obj):
-        return obj.followers.count()
-
+        return obj.followers.count()  # pragma: no cover
 
 
 class PostSerializer(serializers.ModelSerializer):

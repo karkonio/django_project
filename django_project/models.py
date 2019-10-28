@@ -7,6 +7,19 @@ from model_utils.models import TimeStampedModel
 
 
 class Profile(AbstractUser):
+    ILLUSTRATOR = 'ILLUSTRATOR'
+    GRAPHIC = 'GRAPHIC'
+    CARTOONIST = 'CARTOONIST'
+    PAINTER = 'PAINTER'
+    PORTRAIT = 'PORTRAIT'
+    ARTIST_CHOICES = [
+        (ILLUSTRATOR, 'Художник-иллюстратор'),
+        (GRAPHIC, 'Художник-график'),
+        (CARTOONIST, 'Художник-карикатурист'),
+        (PAINTER, 'Живописец'),
+        (PORTRAIT, 'Художник-портретист')
+    ]
+
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     birthday = models.DateField(null=True, blank=True)
@@ -14,6 +27,9 @@ class Profile(AbstractUser):
     city = models.CharField(max_length=85, blank=True)
     phone = models.CharField(unique=True, max_length=30, blank=True)
     website = models.URLField(max_length=250, blank=True)
+    direction = models.CharField(
+        max_length=25, choices=ARTIST_CHOICES, default='ILLUSTRATOR'
+    )
 
     @property
     def age(self):
