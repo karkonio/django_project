@@ -27,5 +27,4 @@ def data():
     )
     follow1 = Follower.objects.create(follower=profile, following=test_profile)
     follow2 = Follower.objects.create(follower=test_profile, following=profile)
-
     return profile, photo_1, photo_2, follow1, follow2, token
