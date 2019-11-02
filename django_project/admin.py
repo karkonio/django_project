@@ -16,7 +16,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
     avatar_tag.short_description = 'Avatar'
     list_display = [
-        'avatar_tag', 'first_name', 'last_name', 'birthday',
+        'avatar_tag', 'first_name', 'last_name', 'birthday', 'direction',
         'city', 'phone', 'website', 'age', 'zodiac'
     ]
 
@@ -29,7 +29,7 @@ class PostAdmin(admin.ModelAdmin):
         )
 
     image_tag.short_description = 'Image'
-    list_display = ['profile', 'image_tag', 'description']
+    list_display = ['profile', 'image_tag', 'description', 'created']
 
 
 @admin.register(Follower)

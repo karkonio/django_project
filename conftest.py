@@ -1,5 +1,6 @@
 import pytest
 import datetime
+from rest_framework.authtoken.models import Token
 
 from django_project.models import Profile, Post, Follower
 
@@ -13,6 +14,7 @@ def data():
         avatar='ava.jpg', city='Bangkok',
         phone='+7 787 654 32 10', website='https://www.test.com'
     )
+    token = Token.objects.create(user=profile)
     photo_1 = Post.objects.create(
         profile=profile, image='asd.jpg', description='ASD'
     )
@@ -25,5 +27,4 @@ def data():
     )
     follow1 = Follower.objects.create(follower=profile, following=test_profile)
     follow2 = Follower.objects.create(follower=test_profile, following=profile)
-
-    return profile, photo_1, photo_2, follow1, follow2
+    return profile, photo_1, photo_2, follow1, follow2, token
