@@ -30,8 +30,18 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'image', 'description', 'profile', 'created']
+        fields = [ 'id', 'image', 'description', 'profile', 'created']
 
 
 class ProfileDetailSerializer(ProfileSerializer):
     posts = PostSerializer(many=True)
+
+
+class ProfileForPostSerializer(serializers.ModelSerializer):
+    class Meta:
+            model = Profile
+            fields = ['id', 'username']
+
+
+class PostDetailSerializer(PostSerializer):
+    profile = ProfileForPostSerializer()

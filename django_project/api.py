@@ -6,8 +6,7 @@ from rest_framework import routers
 
 from .models import Post, Profile
 from .serializers import \
-    PostSerializer, ProfileSerializer, ProfileDetailSerializer
-
+    ProfileSerializer, ProfileDetailSerializer, PostDetailSerializer
 
 class Login(ObtainAuthToken):
 
@@ -34,7 +33,7 @@ class MultiSerializerViewSetMixin(object):
 
 
 class PostViewSet(ModelViewSet):
-    serializer_class = PostSerializer
+    serializer_class = PostDetailSerializer
     queryset = Post.objects.all()
     read_only = True
 
