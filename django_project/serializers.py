@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Post, Profile
+from .models import Post, Profile, Follower
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = [ 'id', 'image', 'description', 'profile', 'created']
+        fields = ['id', 'image', 'description', 'profile', 'created']
 
 
 class ProfileDetailSerializer(ProfileSerializer):
@@ -39,9 +39,15 @@ class ProfileDetailSerializer(ProfileSerializer):
 
 class ProfileForPostSerializer(serializers.ModelSerializer):
     class Meta:
-            model = Profile
-            fields = ['id', 'username']
+        model = Profile
+        fields = ['id', 'username']
 
 
 class PostDetailSerializer(PostSerializer):
     profile = ProfileForPostSerializer()
+
+
+class FollowerCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Follower
+        fields = ['follower', 'following']

@@ -10,8 +10,8 @@ def data():
     profile = Profile.objects.create_user(
         username='user', password='useruser',
         first_name='User', last_name='Userovich',
-        birthday=datetime.datetime(1990, 1, 1),
         avatar='ava.jpg', city='Bangkok',
+        birthday=datetime.datetime(1990, 1, 1),
         phone='+7 787 654 32 10', website='https://www.test.com'
     )
     token = Token.objects.create(user=profile)
@@ -27,4 +27,4 @@ def data():
     )
     follow1 = Follower.objects.create(follower=profile, following=test_profile)
     follow2 = Follower.objects.create(follower=test_profile, following=profile)
-    return profile, photo_1, photo_2, follow1, follow2, token
+    return profile, photo_1, photo_2, follow1, follow2, token, test_profile

@@ -1,12 +1,16 @@
+from django.db import IntegrityError
+
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import routers
+from rest_framework import routers, status
 
-from .models import Post, Profile
+from .models import Post, Profile, Follower
 from .serializers import \
-    ProfileSerializer, ProfileDetailSerializer, PostDetailSerializer
+    ProfileSerializer, ProfileDetailSerializer, PostDetailSerializer,\
+    FollowerCreateSerializer
+
 
 class Login(ObtainAuthToken):
 
@@ -43,12 +47,54 @@ class ProfileViewSet(MultiSerializerViewSetMixin, ModelViewSet):
     serializer_class = ProfileSerializer
     serializer_action_classes = {
         'list': ProfileSerializer,
-        'retrieve': ProfileDetailSerializer,
+        'retrieve': ProfileDetailSerializer
     }
-    read_only = True
+
+
+class FollowView(ModelViewSet):
+    queryset = Follower.objects.all()
+    serializer_class = FollowerCreateSerializer
+
+    def create(self, request):
+        data = request.data
+
+        current_user_id = data.get('current_user_id')
+        profile_id = data.get('profile_id')
+        try:
+            follower = Profile.objects.get(id=current_user_id)
+            following = Profile.objects.get(id=profile_id)
+
+            if follower != following:
+                # if all is OK --> follow object create
+                try:
+                    Follower.objects.create(follower=follower,
+                                            following=following)
+                    return Response(status=status.HTTP_201_CREATED,
+                                    data='follow')
+
+                # if already exists --> follow object delete
+                except IntegrityError:  # pragma: no cover
+                    Follower.objects.get(follower=follower,
+                                         following=following).delete()  # noqa
+                    return Response(
+                        status=status.HTTP_201_CREATED,
+                        data='unfollow'
+                    )
+            else:  # pragma: no cover
+                return Response(
+                    status=status.HTTP_400_BAD_REQUEST,
+                    data='can`t follow yourself'
+                )
+
+        except IndexError:  # pragma: no cover
+            return Response(
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                data='profile does not exist'
+            )
 
 
 router = routers.SimpleRouter()
 router.register('posts', PostViewSet)
 router.register('profiles', ProfileViewSet)
+router.register('follow', FollowView)
 api_urls = router.urls
