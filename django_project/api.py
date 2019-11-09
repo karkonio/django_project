@@ -8,6 +8,7 @@ from .models import Post, Profile
 from .serializers import \
     ProfileSerializer, ProfileDetailSerializer, PostDetailSerializer
 
+
 class Login(ObtainAuthToken):
 
     def post(self, request):

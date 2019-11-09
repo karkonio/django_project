@@ -19,6 +19,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 
+
 from . import views
 from .api import api_urls, Login
 
