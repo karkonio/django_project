@@ -19,14 +19,13 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 
-from rest_framework.authtoken import views as drf_views
 
 from . import views
-from .api import api_urls
+from .api import api_urls, Login
 
 
 urlpatterns = [
-    path('api/auth/', drf_views.obtain_auth_token),
+    path('api/auth/', Login.as_view()),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(api_urls)),
     path('admin/', admin.site.urls),

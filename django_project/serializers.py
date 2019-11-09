@@ -35,3 +35,13 @@ class PostSerializer(serializers.ModelSerializer):
 
 class ProfileDetailSerializer(ProfileSerializer):
     posts = PostSerializer(many=True)
+
+
+class ProfileForPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['id', 'username']
+
+
+class PostDetailSerializer(PostSerializer):
+    profile = ProfileForPostSerializer()
