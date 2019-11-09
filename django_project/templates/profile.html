@@ -65,6 +65,7 @@
           {% endif %}
 
           <h3>{{ profile.first_name }} {{ profile.last_name }}</h3>
+          <h4>{{ profile.direction }}</h4>
         </div>
       </div>
 
@@ -75,10 +76,14 @@
      <div class="panel">
      <div class="panel-body">
      <ul id="myTab" class="nav nav-pills">
-
-     <li class="active"><a href="#detail" data-toggle="tab">Подписаться</a></li>
-     <li class=""><a href="#" data-toggle="tab">Подписки: {{ following }}</a></li>
-     <li class=""><a href="#" data-toggle="tab">Подписчики: {{ followers }}</a></li>
+     {% if profile.id != request.user.id %}
+       <li class="active"><a href="#" data-toggle="tab">Подписаться</a></li>
+       <li class=""><a href="#" data-toggle="tab">Подписки: {{ following }}</a></li>
+       <li class=""><a href="#" data-toggle="tab">Подписчики: {{ followers }}</a></li>
+     {% else %}
+       <li class=""><a href="#" data-toggle="tab">Мои подписки: {{ following }}</a></li>
+       <li class=""><a href="#" data-toggle="tab">Мои подписчики: {{ followers }}</a></li>
+     {% endif %}
      </ul>
      <div id="myTabContent" class="tab-content">
     <hr>
