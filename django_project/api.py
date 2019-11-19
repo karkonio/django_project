@@ -1,12 +1,31 @@
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import routers
+from rest_framework import routers, status
 
+from django_project.email import send_email
 from .models import Post, Profile
 from .serializers import \
-    ProfileSerializer, ProfileDetailSerializer, PostDetailSerializer
+    ProfileSerializer, ProfileDetailSerializer, PostDetailSerializer,\
+    ProfileRegistrationSerializer
+
+
+class CreateRegisterToken(APIView):
+
+    def post(self, request):
+        profile = ProfileRegistrationSerializer().create(validated_data=request.data)  # noqa
+        if profile is not None:
+            profile.save()
+            activation_token = PasswordResetTokenGenerator().make_token(profile)  # noqa
+            send_email(profile, activation_token)
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response({
+                'Passwords do not match or this data already exists.'
+            }, status=status.HTTP_400_BAD_REQUEST)
 
 
 class Login(ObtainAuthToken):

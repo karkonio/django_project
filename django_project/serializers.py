@@ -45,3 +45,25 @@ class ProfileForPostSerializer(serializers.ModelSerializer):
 
 class PostDetailSerializer(PostSerializer):
     profile = ProfileForPostSerializer()
+
+
+class ProfileRegistrationSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    email = serializers.EmailField()
+    birthday = serializers.DateField()
+    phone = serializers.IntegerField()
+    password = serializers.CharField()
+    password_confirm = serializers.CharField()
+
+    def create(self, validated_data):
+        if validated_data['password'] == validated_data['password_confirm']:
+            user = Profile.objects.create(
+                username=validated_data['username'],
+                email=validated_data['email'],
+                birthday=validated_data['birthday'],
+                phone=validated_data['phone'],
+                password=validated_data['password']
+            )
+            return user
+        else:
+            return None

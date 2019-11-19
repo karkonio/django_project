@@ -21,10 +21,11 @@ from django.conf.urls.static import static
 
 
 from . import views
-from .api import api_urls, Login
+from .api import api_urls, Login, CreateRegisterToken
 
 
 urlpatterns = [
+    path('api/register/', CreateRegisterToken.as_view()),
     path('api/auth/', Login.as_view()),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(api_urls)),
