@@ -65,5 +65,5 @@ class ProfileRegistrationSerializer(serializers.Serializer):
                 password=validated_data['password']
             )
             return user
-        else:
+        else:  # pragma: no cover
             return None

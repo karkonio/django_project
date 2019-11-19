@@ -22,7 +22,7 @@ class CreateRegisterToken(APIView):
             activation_token = PasswordResetTokenGenerator().make_token(profile)  # noqa
             send_email(profile, activation_token)
             return Response(status=status.HTTP_201_CREATED)
-        else:
+        else:  # pragma: no cover
             return Response({
                 'Passwords do not match or this data already exists.'
             }, status=status.HTTP_400_BAD_REQUEST)
