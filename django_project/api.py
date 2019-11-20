@@ -28,6 +28,20 @@ class CreateRegisterToken(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
 
+class AccountActivation(APIView):
+
+    def get(self, request, token, username):  # pragma: no cover
+        try:
+            profile = Profile.objects.get(username=username)
+            # returns True or False
+            if PasswordResetTokenGenerator().check_token(profile, token):
+                profile.set_password(profile.password)
+                profile.save()
+            return Response("Account successfully activated", status=status.HTTP_201_CREATED)  # noqa
+        except Profile.DoesNotExist:
+            return Response("Bad credentials", status=status.HTTP_400_BAD_REQUEST)  # noqa
+
+
 class Login(ObtainAuthToken):
 
     def post(self, request):

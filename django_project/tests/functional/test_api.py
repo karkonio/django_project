@@ -18,7 +18,7 @@ def test_login_post_method_ok(db, data):
 
 
 # test login with wrong password
-def test_login_post_method_fail(db, data):
+def test_login_post_method_fail(db):
     view = Login.as_view()
     factory = APIRequestFactory()
     request = factory.post(
@@ -34,8 +34,7 @@ def test_login_post_method_fail(db, data):
 
 
 # assert that confirmation email were send
-def test_send_confirm_email_post_method_ok(db, data):
-    profile, photo_1, photo_2, follow1, follow2, token = data
+def test_send_confirm_email_post_method_ok(db):
     view = CreateRegisterToken.as_view()
     factory = APIRequestFactory()
     request = factory.post(
@@ -55,7 +54,7 @@ def test_send_confirm_email_post_method_ok(db, data):
 
 
 # assert that confirmation email weren't send
-def test_send_confirm_email_post_method_fail(db, data):
+def test_send_confirm_email_post_method_fail(db):
     view = Login.as_view()
     factory = APIRequestFactory()
     request = factory.post(

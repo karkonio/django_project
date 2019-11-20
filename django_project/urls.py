@@ -21,11 +21,12 @@ from django.conf.urls.static import static
 
 
 from . import views
-from .api import api_urls, Login, CreateRegisterToken
+from .api import api_urls, Login, CreateRegisterToken, AccountActivation
 
 
 urlpatterns = [
     path('api/register/', CreateRegisterToken.as_view()),
+    path('api/confirmation/<str:token>/<str:username>$', AccountActivation.as_view()),  # noqa
     path('api/auth/', Login.as_view()),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(api_urls)),
