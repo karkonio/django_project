@@ -1,6 +1,7 @@
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -69,7 +70,27 @@ class MultiSerializerViewSetMixin(object):
 class PostViewSet(ModelViewSet):
     serializer_class = PostDetailSerializer
     queryset = Post.objects.all()
-    read_only = True
+    parser_classes = [MultiPartParser]
+
+    def create(self, request):  # pragma: no cover
+        try:
+            description = request.data.get('description')
+            profile_id = request.data.get('current_user_id')
+            profile = Profile.objects.get(id=profile_id)
+
+            if request.data.get('file') is not None:
+                post_image = self.request.data.get('file')
+            else:
+                return Response("Image not uploaded", status=status.HTTP_400_BAD_REQUEST)  # noqa
+
+            Post.objects.create(
+                profile=profile,
+                image=post_image,
+                description=description
+            )
+            return Response('Post successfully created', status=status.HTTP_201_CREATED)  # noqa
+        except Profile.DoesNotExist:
+            return Response("User undefined", status=status.HTTP_400_BAD_REQUEST)  # noqa
 
 
 class ProfileViewSet(MultiSerializerViewSetMixin, ModelViewSet):
